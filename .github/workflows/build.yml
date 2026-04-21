@@ -36,3 +36,13 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Only release if a tag is pushed (e.g. v1.0.0)
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-build
+          path: |
+            dist/*.dmg
+            dist/*.exe
+            dist/*.zip
+
